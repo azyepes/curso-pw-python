@@ -1,0 +1,7 @@
+frutas=("manzana","pera","banana", "naranja")
+print(frutas)
+print(frutas[0])
+print(type(frutas))
+print(frutas[2])
+print(frutas[1:3])
+print(len(frutas))

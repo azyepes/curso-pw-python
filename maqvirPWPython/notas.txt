@@ -1,0 +1,12 @@
+**** Como crear una maquina virtual ****
+
+1. Crear una subcarpeta (proyecto) y entrar en ella
+2. Crear maquina virtual
+3. Correr comando -> python3 -m venv maqvir
+4. Entrar a la subcarpeta Scripts/bin
+5. Correr comando -> source activate
+6. Instalar Django, si es necesario -> pip3 install Django
+7. OJO ! Siempre esta en el entorno virtual
+8. Regresar a la carpeta raíz del proyecto -> cd ..
+9. Verificar paquetes del entorno local -> pip3 freeze --local
+10. Para salir de la maquina virtual -> deactivate
