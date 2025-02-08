@@ -4,7 +4,7 @@ from playwright.sync_api import Page, expect, sync_playwright, Playwright
 
 # pytest 8-checkbox_reto.py
 
-def test_checkbox_reto(playwright: Playwright) -> None:
+def test_checkbox_reto_uno(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(
         headless=False, 
         slow_mo=500
