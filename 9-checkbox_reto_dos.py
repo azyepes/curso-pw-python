@@ -39,8 +39,11 @@ def test_checkbox_reto_dos(playwright: Playwright) -> None:
     
     count_pages = page.locator("//*[@data-dt-idx >= 0]").count()
     
-    for i in range(1,count_pages+1): 
-        page.locator(f"//button[normalize-space()='{i}']").click()
+    for i in range(1,count_pages+1):
+        if i == 1:
+            pass
+        else:
+            page.locator(f"//button[normalize-space()='{i}']").click()
         count_entries = page.locator("//table[@id='example']/tbody/tr").count()
         for j in range(1,count_entries+1):
             page.locator(f"(//input[@aria-label='Select row'])[{j}]").click()

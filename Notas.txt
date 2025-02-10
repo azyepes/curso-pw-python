@@ -1,0 +1,11 @@
+----- COMO CREAR MAQUINA VIRTUAL E INSTALAR PLAYWRIGHT -----
+
+1. Crear una subcarpeta si lo necesita
+2. Crear maquina virtual -> python3 -m venv maqvir
+3. Entrar a la maquina virtual y luego a bin -> cd maqvir/bin/
+4. Activar maquina virtual -> source activate
+5. Volver a la carpeta del proyecto -> cd ../../ (/playwirghtpython)
+6. Verificar paquetes instalador -> pip3 list o pip3 freeze --local
+7. Instalar playwright -> pip3 install pytest-playwright
+8. Instalar browsers -> playwright install
+9. Verificar paquetes instalador -> pip3 list o pip3 freeze --local
