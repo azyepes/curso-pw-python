@@ -10,6 +10,10 @@ class BasePage:
     def __init__(self, page): 
         self.page = page
         
+    def Goto(self, url, title):
+        self.page.goto(url)
+        expect(self.page).to_have_title(re.compile(rf"{title}"))
+        
     def Default_Timeout(self, t=5000): #z_time = 5000 default time en caso no se pase
         self.page.set_default_timeout(t)
         
@@ -22,21 +26,41 @@ class BasePage:
         
     def Click(self, locator, t=0.5):
         selector = self.page.locator(locator)
+        
+        expect(selector).to_be_visible()
+        expect(selector).to_be_enabled()
+        
         selector.click()
         time.sleep(t)
         
     def Fill_text(self, locator, text):
         selector = self.page.locator(locator)
-        try:
-        # expect(selector).to_be_visible()
-        # expect(selector).to_be_enabled()
-        # expect(selector).to_be_empty()
-            # print("All Good")
-            assert selector.is_visible() == True
-        # assert selector.is_enabled() == enabled
-        # assert selector.is_empty() == empty
-            selector.fill(text)
-        except Exception as e:
-            print(f"Error: {e}")
+        # try:
+        expect(selector).to_be_visible()
+        expect(selector).to_be_enabled()
+        expect(selector).to_be_empty()
+        
+        selector.highlight()
+        selector.fill(text)
+        # except Exception as e:
+            # print(f"Error: {e}")
             
         time.sleep(1)
+        
+    def Screenshot(self, path, t=0.5):
+        self.page.screenshot(path=path)
+        time.sleep(t)
+    
+    def Select(self, locator, value, t=0.5):
+        selector = self.page.locator(locator)
+        
+        expect(selector).to_be_visible()
+        expect(selector).to_be_enabled()
+        
+        selector.select_option(value)
+        time.sleep(t)
+        
+    def Validate_text(self, locator, text, t=0.5):
+        selector = self.page.locator(locator)
+        expect(selector).to_contain_text(re.compile(rf"{text}"))
+        time.sleep(t)

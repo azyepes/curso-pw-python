@@ -4,11 +4,15 @@ import time
 from playwright.sync_api import Page, expect, sync_playwright, Playwright
 from BasePage import BasePage
 
+# Variable global
+t = 3
+path = "Imagenes/Selector"
+
 def test_select_uno(playwright: Playwright) -> None:
     
     browser = playwright.chromium.launch(
         headless=False, 
-        slow_mo=300
+        slow_mo=t*100
     )
     
     context = browser.new_context(
@@ -26,31 +30,39 @@ def test_select_uno(playwright: Playwright) -> None:
     page.goto("https://demoqa.com")
     
     # Default timeout para esperar en la pagina
-    F.Default_Timeout(5000) # page.set_default_timeout(5000)
+    F.Default_Timeout(t*1000) # page.set_default_timeout(5000)
 
     # Expected title
     expect(page).to_have_title("DEMOQA")
     
     # Go to practice form
-    F.Click("(//div[@class='card mt-4 top-card'])[2]") # page.get_by_text("Forms").click()
-    F.Click("//span[normalize-space()='Practice Form']") # page.get_by_text("Practice Form").click()
+    F.Click("(//div[@class='card mt-4 top-card'])[2]") # Click en Forms
+    F.Click("//span[normalize-space()='Practice Form']") # Click en practice forms
         
     # Sroll down
-    F.Scroll_Down_Up(0, 400, 1) # page.mouse.wheel(0, 200) # Cordenadas en x, y x=0 y=400
+    F.Scroll_Down_Up(0, 400, t) # page.mouse.wheel(0, 200) # Cordenadas en x, y x=0 y=400
     
     # Función de espera
-    # F.Timeout(1) # time.sleep(1)
+    # F.Timeout(t) # time.sleep(1)
     
     # Función fill text, click
-    F.Fill_text("//input[@id='firstName']", "John") # page.locator("//input[@id='firstName']").fill("John")}
-    F.Fill_text("//input[@id='lastName']", "Doe") # page.locator("//input[@id='lastName']").fill("Doe")
-    F.Fill_text("//input[@id='userEmail']", "johndoe@me.com") # page.locator("//input[@id='userEmail']").fill("johndoe@me.com")
+    F.Fill_text("//input[@id='firstName']", "John") # Fill first name
+    F.Fill_text("//input[@id='lastName']", "Doe") # Fill last name
+    F.Fill_text("//input[@id='userEmail']", "johndoe@me.com") # Fill email
+    F.Screenshot(path + "/email.png")
     
-    F.Click("//label[normalize-space()='Male']") # page.get_by_text("Male").click()
     
-    F.Fill_text("//input[@id='userNumber']", "3050085414") # page.locator("//input[@id='userNumber']").fill("1234567890")
-    F.Fill_text("//textarea[@id='currentAddress']", "123 Main Street") # page.locator("//textarea[@id='currentAddress']").fill("123 Main Street")
     
+    F.Click("//label[normalize-space()='Male']") # Click Male
+    
+    F.Fill_text("//input[@id='userNumber']", "3050085414") # Fill phone number
+    F.Fill_text("//textarea[@id='currentAddress']", "123 Main Street") # Fill address
+    
+    F.Click("//div[text()='Select State']")
+    F.Click("//div[text()='NCR']")
+    
+    F.Click("//div[text()='Select City']")
+    F.Click("//div[text()='Delhi']")
     # Click submit
     # F.Click("//button[@id='submit']") # page.locator("//button[@id='submit']").click()
     
